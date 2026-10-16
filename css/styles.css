@@ -13773,3 +13773,35 @@ body #user-sticker-picker .empty-sticker-tip {
     border-radius: 0 !important;
     overflow: hidden !important;
 }
+/* ── 聊天消息头像：终极方框补丁 ──────────────────────── */
+
+/* 消息行里所有可能的头像相关选择器，一网打尽 */
+.message-wrapper .message-avatar,
+.message-wrapper .message-avatar *,
+.message-wrapper.sent .message-avatar,
+.message-wrapper.sent .message-avatar *,
+.message-wrapper.received .message-avatar,
+.message-wrapper.received .message-avatar *,
+.message-avatar,
+.message-avatar *,
+.message-avatar img,
+.message-avatar i,
+.message-avatar div,
+.message-avatar span,
+.avatar-shape-circle,
+.avatar-shape-circle *,
+.message-wrapper .avatar-shape-circle,
+.message-wrapper .avatar-shape-circle *,
+.chat-container .message-avatar,
+.chat-container .message-avatar *,
+.main-chat-area .message-avatar,
+.main-chat-area .message-avatar * {
+    border-radius: 0 !important;
+    overflow: hidden !important;
+}
+
+/* 头像框（那个外圈装饰）也方 */
+.message-avatar .avatar-frame,
+.message-avatar .avatar-frame * {
+    border-radius: 0 !important;
+}
