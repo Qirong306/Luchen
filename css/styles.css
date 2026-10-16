@@ -13733,3 +13733,43 @@ body #user-sticker-picker .empty-sticker-tip {
     overflow: hidden;
     text-overflow: ellipsis;
 }
+/* ══════════════════════════════════════════════════════
+   QQ2008 皮肤补丁 — 追加在 styles.css 末尾
+   目的：把原文件里 !important 的圆角规则盖掉
+   ══════════════════════════════════════════════════════ */
+
+/* ── 数据管理弹窗：强制直角 ───────────────────────────── */
+#data-modal .modal-content,
+#data-modal .modal-title {
+    border-radius: 0 !important;
+}
+
+/* ── 聊天页所有头像：强制方框 ─────────────────────────── */
+.avatar,
+.avatar img,
+.avatar i,
+.avatar-container,
+.avatar-container .avatar,
+.avatar-container::after,
+.user-info .avatar,
+.user-info .avatar-container,
+.header .avatar,
+.header .avatar-container,
+.header-inner .avatar-container,
+.message-avatar,
+.message-avatar img,
+.message-avatar i,
+.avatar-shape-circle,
+.avatar-shape-circle img,
+.avatar-shape-circle i,
+.avatar-shape-circle .avatar,
+.avatar-shape-square,
+.avatar-shape-square img,
+.avatar-shape-square i,
+.avatar-shape-square .avatar,
+.typing-indicator-avatar,
+.typing-indicator-avatar img,
+.avatar-frame {
+    border-radius: 0 !important;
+    overflow: hidden !important;
+}
