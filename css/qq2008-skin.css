@@ -1,0 +1,325 @@
+/* ════════════════════════════════════════════════════
+   qq2008-skin.css — 传讯 UI 换肤为 QQ2008 蓝白风
+   放在所有其他 css 之后引入，靠层叠顺序覆盖
+   ════════════════════════════════════════════════════ */
+
+/* ── 1. 全局变量：换配色 + 字体 + 直角 ──────────────── */
+:root {
+  --font-family: "SimSun", "宋体", "Songti SC", serif;
+  --radius: 0;
+  --radius-sm: 0;
+  --radius-xs: 0;
+
+  /* 配色：蓝白 QQ2008 */
+  --primary-bg: #ECE9D8;
+  --secondary-bg: #FFFFFF;
+  --text-primary: #000000;
+  --text-secondary: #666666;
+  --border-color: #ACA899;
+
+  /* 主题色改为 QQ 蓝 */
+  --accent-color: #2E75B6;
+  --accent-color-dark: #1F5C96;
+  --accent-color-rgb: 46, 117, 182;
+
+  /* 背景辅助变量 */
+  --primary-bg-rgb: 236, 233, 216;
+  --secondary-bg-rgb: 255, 255, 255;
+  --header-bg-rgb: 46, 117, 182;
+
+  /* 消息气泡 */
+  --message-sent-bg: #2E75B6;
+  --message-sent-text: #FFFFFF;
+  --message-received-bg: #FFFFFF;
+  --message-received-text: #000000;
+}
+
+/* 暗色模式也强制走蓝白（QQ2008 没有暗色） */
+html[data-theme="dark"] {
+  --primary-bg: #ECE9D8;
+  --secondary-bg: #FFFFFF;
+  --text-primary: #000000;
+  --text-secondary: #666666;
+  --border-color: #ACA899;
+  --primary-bg-rgb: 236, 233, 216;
+  --secondary-bg-rgb: 255, 255, 255;
+  --header-bg-rgb: 46, 117, 182;
+}
+
+/* 各主题色的覆盖：全部统一成蓝，避免原来的紫/粉/金 */
+:root[data-color-theme="gold"],
+:root[data-color-theme="blue"],
+:root[data-color-theme="purple"],
+:root[data-color-theme="green"],
+:root[data-color-theme="pink"],
+:root[data-color-theme="pastel"],
+:root[data-color-theme="sunset"],
+:root[data-color-theme="forest"],
+:root[data-color-theme="ocean"],
+:root[data-color-theme="black-white"] {
+  --accent-color: #2E75B6;
+  --accent-color-dark: #1F5C96;
+  --accent-color-rgb: 46, 117, 182;
+}
+
+html[data-theme="dark"][data-color-theme="black-white"] {
+  --accent-color: #2E75B6;
+  --accent-color-dark: #1F5C96;
+  --accent-color-rgb: 46, 117, 182;
+  --message-sent-text: #FFFFFF;
+}
+
+/* ── 2. 全局强制直角 ────────────────────────────────── */
+.message-input,
+.message,
+.modal-content,
+.modal-input,
+.modal-textarea,
+.settings-card,
+.settings-item,
+.setting-pill-row,
+.setting-pill-switch,
+.setting-pill-knob,
+.action-btn,
+.input-btn,
+.sticker-picker-popover,
+.combo-tabs-header,
+.combo-tab-btn,
+.combo-content-area,
+.sticker-grid-item,
+.avatar,
+.message-avatar,
+.avatar-container,
+.cs-card,
+.cs-pill,
+.cs-pills,
+.cs-compose-row,
+.cs-post,
+.cs-sheet,
+.cs-comment-input,
+.cs-cmt-input-inline,
+.companion-modal-content,
+.companion-setup-content,
+.companion-time-content,
+.companion-mode-card,
+.companion-time-btn,
+.companion-upload-zone,
+.companion-ctrl-btn,
+.companion-timer-glass,
+.news-logo,
+.news-item,
+.news-item-tag,
+.news-refresh button,
+.farm-window,
+.seed,
+.plot,
+.qq-panel,
+.qq-window {
+  border-radius: 0 !important;
+}
+
+/* 圆形头像/按钮保留圆形（这些在 QQ2008 里也是圆的） */
+.avatar,
+.message-avatar,
+.avatar-container,
+.typing-indicator-avatar,
+.companion-timer-glass,
+.companion-ctrl-btn,
+.companion-noise-corner,
+.companion-history-corner,
+.companion-keyboard-corner,
+.gmb-avatar {
+  border-radius: 50% !important;
+}
+
+/* ── 3. 主 header：改成 QQ 蓝渐变 ──────────────────── */
+.header {
+  background: linear-gradient(180deg, #5B9BD5 0%, #2E75B6 55%, #1F5C96 100%) !important;
+  border-bottom: 1px solid #0A246A !important;
+  box-shadow: none !important;
+  opacity: 1 !important;
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
+}
+
+.header .username,
+.header .status {
+  color: #FFFFFF !important;
+  text-shadow: 0 1px 0 rgba(0,0,0,0.3);
+}
+
+.header .action-btn {
+  color: #FFFFFF !important;
+}
+
+.header .action-btn:hover {
+  background-color: rgba(255,255,255,0.18) !important;
+  color: #FFFFFF !important;
+}
+
+/* ── 4. 消息气泡：QQ2008 蓝白 ───────────────────────── */
+.message {
+  border: 1px solid !important;
+  box-shadow: none !important;
+}
+
+.message-sent {
+  background: #EAF4FF !important;
+  color: #12345A !important;
+  border-color: #A8C8E8 !important;
+}
+
+.message-received {
+  background: #FFFFFF !important;
+  color: #12345A !important;
+  border-color: #A8C8E8 !important;
+}
+
+/* ── 5. 输入框：下凹 98 样式 ────────────────────────── */
+.message-input {
+  border: 2px solid !important;
+  border-color: #808080 #FFFFFF #FFFFFF #808080 !important;
+  background: #FFFFFF !important;
+  box-shadow: none !important;
+}
+
+.modal-input,
+.modal-textarea {
+  border: 2px solid !important;
+  border-color: #808080 #FFFFFF #FFFFFF #808080 !important;
+  background: #FFFFFF !important;
+}
+
+/* ── 6. 按钮：立体凸起 98 样式 ──────────────────────── */
+.input-btn,
+.action-btn,
+.modal-btn,
+.settings-item,
+.setting-pill-row {
+  border: 2px solid !important;
+  border-color: #FFFFFF #808080 #808080 #FFFFFF !important;
+  background: #ECE9D8 !important;
+  color: #000000 !important;
+  box-shadow: 1px 1px 0 #6B6B6B !important;
+}
+
+.input-btn:active,
+.action-btn:active,
+.modal-btn:active {
+  border-color: #808080 #FFFFFF #FFFFFF #808080 !important;
+  box-shadow: none !important;
+  transform: translate(1px, 1px) !important;
+}
+
+/* 主按钮（发送、生成回复等）：蓝色底 */
+.modal-btn-primary,
+.send-btn {
+  background: linear-gradient(180deg, #5B9BD5, #2E75B6) !important;
+  color: #FFFFFF !important;
+  border-color: #FFFFFF #1F5C96 #1F5C96 #FFFFFF !important;
+}
+
+/* ── 7. 弹窗：立体边框 ──────────────────────────────── */
+.modal-content {
+  border: 3px solid !important;
+  border-color: #FFFFFF #808080 #808080 #FFFFFF !important;
+  box-shadow: 0 0 0 1px #000, 4px 4px 0 rgba(0,0,0,0.3) !important;
+  background: #ECE9D8 !important;
+}
+
+.modal-title {
+  background: linear-gradient(180deg, #5B9BD5, #2E75B6) !important;
+  color: #FFFFFF !important;
+  margin: -24px -24px 16px -24px !important;
+  padding: 10px 16px !important;
+  border-bottom: 1px solid #0A246A !important;
+}
+
+.modal-title i,
+.modal-title span {
+  color: #FFFFFF !important;
+}
+
+/* ── 8. 弹窗内的卡片 / 列表 ─────────────────────────── */
+.settings-card,
+.settings-item,
+.cs-card {
+  background: #FFFFFF !important;
+  border: 1px solid #ACA899 !important;
+}
+
+/* ── 9. 表情面板：白底 + 边框 ───────────────────────── */
+.sticker-picker-popover {
+  background: #ECE9D8 !important;
+  border: 2px solid !important;
+  border-color: #FFFFFF #808080 #808080 #FFFFFF !important;
+}
+
+.combo-tabs-header {
+  background: #ECE9D8 !important;
+  border-bottom: 1px solid #ACA899 !important;
+}
+
+.combo-tab-btn.active {
+  background: linear-gradient(180deg, #5B9BD5, #2E75B6) !important;
+  color: #FFFFFF !important;
+}
+
+/* ── 10. 头像方角（QQ2008 是方的） ──────────────────── */
+.avatar img,
+.message-avatar img,
+.message-avatar i {
+  border-radius: 0 !important;
+}
+
+/* ── 11. 聊天区背景色：去掉背景图，用米白 ───────────── */
+body::before {
+  background-image: none !important;
+  background-color: #ECE9D8 !important;
+}
+
+.chat-container {
+  background-color: #FFFFFF !important;
+}
+
+/* ── 12. 输入区容器 ─────────────────────────────────── */
+.input-area-wrapper {
+  background: #ECE9D8 !important;
+  border-top: 1px solid #ACA899 !important;
+}
+
+.input-area {
+  border-top: none !important;
+  background: #ECE9D8 !important;
+}
+
+/* ── 13. 各种 tab 按钮 ──────────────────────────────── */
+.combo-tab-btn,
+.cs-tab,
+.stats-nav-btn,
+.farm-tab,
+.qz-nav-item,
+.reply-tab-btn {
+  border-radius: 0 !important;
+}
+
+.qz-titlebar,
+.farm-titlebar,
+.news-titlebar,
+.listen-titlebar {
+  background: linear-gradient(180deg, #5B9BD5 0%, #2E75B6 55%, #1F5C96 100%) !important;
+  color: #FFFFFF !important;
+  border-bottom: 1px solid #0A246A !important;
+}
+
+/* ── 14. 滚动条：98 风格 ────────────────────────────── */
+::-webkit-scrollbar-thumb {
+  background: #D4D0C8 !important;
+  border: 2px solid !important;
+  border-color: #FFFFFF #808080 #808080 #FFFFFF !important;
+}
+
+::-webkit-scrollbar {
+  width: 14px;
+  background: #ECE9D8;
+}
