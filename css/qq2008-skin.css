@@ -908,3 +908,362 @@ input[type="checkbox"] + .notif-toggle-slider::before {
 .cs-tab.active {
   border-bottom-color: var(--accent-color) !important;
 }
+/* ══════════════════════════════════════════════════════
+   补丁 v3：指定模块圆角 → 直角；头像 → 方框
+   ══════════════════════════════════════════════════════ */
+
+/* ── 1. 陪伴模式选择卡片 ────────────────────────────── */
+.companion-modal-content,
+.companion-setup-content,
+.companion-time-content,
+.companion-mode-card,
+.companion-grid,
+.companion-time-btn,
+.companion-upload-zone,
+.companion-voice-item,
+.companion-bg-preview,
+.companion-setup-btns .modal-btn {
+  border-radius: 0 !important;
+}
+
+/* 陪伴模式卡片里的图标圆底也干掉 */
+.companion-mode-card i {
+  border-radius: 0 !important;
+}
+
+/* ── 2. 全屏陪伴页 ──────────────────────────────────── */
+.companion-page .companion-ctrl-btn,
+.companion-page .companion-timer-glass,
+.companion-page .companion-timer-glass::before,
+.companion-page .companion-timer-glass::after,
+.companion-page .companion-bubble-avatar,
+.companion-page .companion-bubble-content,
+.companion-page .companion-typing-avatar,
+.companion-page .companion-typing-bubble,
+.companion-page .companion-input-bar,
+.companion-page .companion-input-field,
+.companion-page .companion-input-btn,
+.companion-page .companion-noise-card-inner,
+.companion-page .companion-noise-option,
+.companion-page .companion-noise-list-item,
+.companion-page .companion-noise-now-playing,
+.companion-page .companion-exit-box,
+.companion-page .companion-transition-avatar,
+.companion-page .companion-transition-bubble,
+.companion-page .companion-history-close,
+.companion-page .companion-history-item .companion-bubble-content {
+  border-radius: 0 !important;
+}
+
+/* 陪伴页计时玻璃球——保留圆形（它是装饰核心） */
+.companion-page .companion-timer-glass {
+  border-radius: 50% !important;
+}
+.companion-page .companion-timer-glass::before {
+  border-radius: 50% !important;
+}
+.companion-page .companion-timer-glass::after {
+  border-radius: 50% !important;
+}
+/* 陪伴页气泡头像保留圆形 */
+.companion-page .companion-bubble-avatar,
+.companion-page .companion-bubble-avatar img,
+.companion-page .companion-typing-avatar,
+.companion-page .companion-typing-avatar img,
+.companion-page .companion-transition-avatar,
+.companion-page .companion-transition-avatar img {
+  border-radius: 50% !important;
+}
+/* 陪伴过渡页圆环动画保留 */
+.companion-transition-avatar,
+.companion-transition-avatar img {
+  border-radius: 50% !important;
+}
+
+/* ── 3. 悬浮音乐播放器（player-container）──────────── */
+.player-container,
+.full-view,
+.mini-view,
+.progress-wrapper,
+.progress-bar,
+.playlist-popup,
+.playlist-search-input,
+.playlist-item,
+.playlist-header,
+.pl-icon-btn,
+.custom-tag,
+.song-title-row .highlight {
+  border-radius: 0 !important;
+}
+
+/* 播放器折叠状态：从圆形改成方形 */
+.player-container.collapsed {
+  border-radius: 0 !important;
+}
+
+/* 播放按钮圆 → 方形 */
+.btn-main {
+  border-radius: 0 !important;
+}
+
+/* 唱片（那个黑色大圆）→ 保留圆形（它是唱片，必须圆） */
+.vinyl-record,
+.vinyl-record::after {
+  border-radius: 50% !important;
+}
+.vinyl-record.has-cover,
+.vinyl-record.has-cover::after {
+  border-radius: 50% !important;
+}
+
+/* 进度条、进度点：直角 */
+.progress-wrapper {
+  border-radius: 0 !important;
+}
+.progress-bar {
+  border-radius: 0 !important;
+}
+.progress-bar::after {
+  border-radius: 0 !important;
+}
+
+/* 播放器里的小图标按钮：直角 */
+.btn {
+  border-radius: 0 !important;
+}
+
+/* 播放器最外层白色卡片：大圆角 → 直角 */
+.player-container {
+  border-radius: 0 !important;
+}
+
+/* 播放列表弹窗：圆角 → 直角 */
+.playlist-popup {
+  border-radius: 0 !important;
+}
+.playlist-popup .pl-icon-btn {
+  border-radius: 0 !important;
+}
+.playlist-search-input {
+  border-radius: 0 !important;
+}
+.playlist-item {
+  border-radius: 0 !important;
+}
+
+/* 播放器顶部的展开箭头按钮（那个 ⌃）*/ 
+.player-container .minimize-btn {
+  border-radius: 0 !important;
+}
+
+/* 上传封面按钮圆形 → 方形 */
+#upload-cover-btn {
+  border-radius: 0 !important;
+}
+
+/* ── 4. 每日状态弹窗（daily-greeting）──────────────── */
+#daily-greeting-modal .daily-greeting-card,
+#daily-greeting-modal .dg-header-band,
+#daily-greeting-modal .dg-header-band-bg,
+#daily-greeting-modal .dg-header-band-overlay,
+#daily-greeting-modal .dg-emoji-circle,
+#daily-greeting-modal .dg-mood-panel,
+#daily-greeting-modal .dg-info-cell,
+#daily-greeting-modal .dg-note-box,
+#daily-greeting-modal .dg-note-weather-badge,
+#daily-greeting-modal .daily-greeting-close-btn,
+#daily-greeting-modal .dg-header-band-wave,
+#daily-greeting-modal .dg-header-band-shimmer {
+  border-radius: 0 !important;
+}
+
+/* 每日状态卡片（也用于"想你"那张蓝渐变卡）*/
+.daily-greeting-card {
+  border-radius: 0 !important;
+}
+.dg-header-band {
+  border-radius: 0 !important;
+}
+.dg-emoji-circle {
+  border-radius: 0 !important;
+}
+.dg-info-cell {
+  border-radius: 0 !important;
+}
+.dg-note-box {
+  border-radius: 0 !important;
+}
+.daily-greeting-close-btn {
+  border-radius: 0 !important;
+}
+.dg-mood-panel {
+  border-radius: 0 !important;
+}
+
+/* 每日状态里的装饰圆（如果有）*/
+.dg-info-cell-icon {
+  border-radius: 0 !important;
+}
+.dg-mood-icon-big {
+  border-radius: 0 !important;
+}
+
+/* ── 5. 数据管理弹窗（#data-modal / dm-*）──────────── */
+#data-modal .modal-content,
+.dm-body,
+.dm-storage-card,
+.dm-stat-block,
+.dm-section-label,
+.dm-tile,
+.dm-tile::after,
+.dm-tile-icon,
+.dm-row-card,
+.dm-row-icon,
+.dm-row-item,
+.dm-progress-track,
+.dm-progress-fill,
+.dm-danger-btn,
+.dm-nav-btn,
+.dm-action-drawer,
+.dm-drawer-sheet,
+.dm-drawer-handle,
+.dm-drawer-title-icon,
+.dm-drawer-action-btn,
+.dm-drawer-btn-icon,
+.dm-drawer-cancel,
+.dm-danger-card,
+.dm-danger-card-icon,
+.dm-danger-cards-row,
+.dm-danger-card-half {
+  border-radius: 0 !important;
+}
+
+/* 数据管理里的开关滑块——保留圆（开关的形状就是圆的）*/
+.dm-toggle-slider,
+.dm-toggle-slider::after {
+  border-radius: 50% !important;
+}
+.dm-toggle-pill {
+  border-radius: 28px !important;
+}
+
+/* 数据管理里的图标按钮（那个圆形箭头）—— 也改方 */
+.dm-nav-btn {
+  border-radius: 0 !important;
+}
+
+/* ── 6. 头像：全部改成方框 ──────────────────────────── */
+.avatar,
+.avatar-container,
+.avatar img,
+.avatar i,
+.avatar-container .avatar,
+.user-info .avatar,
+.user-info .avatar-container,
+.message-avatar,
+.message-avatar img,
+.message-avatar i,
+.typing-indicator-avatar,
+.typing-indicator-avatar img,
+.gmb-avatar,
+.gmb-avatar img,
+.cs-big-av,
+.cs-big-av img,
+.cs-avatar,
+.cs-avatar img,
+.cs-post-av,
+.cs-post-av img,
+.sri-avatar,
+.sri-me,
+.sri-partner,
+.fav-avatar,
+.qz-banner-ava,
+.qz-banner-ava img,
+.qz-banner-ava::before,
+.pd-partner-av,
+.pd-partner-av img,
+.companion-bubble-avatar,
+.companion-bubble-avatar img,
+.companion-typing-avatar,
+.companion-typing-avatar img,
+.companion-transition-avatar,
+.companion-transition-avatar img,
+.companion-showtime-avatar,
+.companion-showtime-avatar img,
+.cs-cmt-input-av,
+.cs-cmt-input-av img,
+.avatar-frame,
+.album-user-avatar,
+.header .avatar,
+.header .avatar img {
+  border-radius: 0 !important;
+  overflow: hidden !important;
+}
+
+/* 头像框（外圈装饰环）也跟着方 */
+.avatar-frame {
+  border-radius: 0 !important;
+}
+
+/* 头像圆形遮罩层也撤掉 */
+.avatar-container::after {
+  border-radius: 0 !important;
+}
+
+/* 头像形状类：强制方形 */
+.avatar-shape-circle,
+.avatar-shape-circle img,
+.avatar-shape-circle i,
+.avatar-shape-circle .avatar {
+  border-radius: 0 !important;
+}
+.avatar-shape-square,
+.avatar-shape-square img,
+.avatar-shape-square i,
+.avatar-shape-square .avatar {
+  border-radius: 0 !important;
+}
+
+/* 聊天页顶部那个"我"和"梦角"头像容器 */
+.header-inner .avatar-container,
+.header-inner .avatar-container .avatar {
+  border-radius: 0 !important;
+}
+
+/* ── 7. 兼容：某些地方不能全方（保留圆形）─────────── */
+/* 开关滑块仍保持圆（不然开关会变得很怪）*/
+input[type="checkbox"] + .notif-toggle-slider,
+input[type="checkbox"] + .notif-toggle-slider::before,
+.setting-pill-switch,
+.setting-pill-knob,
+.fb-toggle,
+.fb-toggle::after {
+  border-radius: 50% !important;
+}
+.setting-pill-switch {
+  border-radius: 23px !important;
+}
+
+/* 单选按钮点（如果有）*/
+input[type="radio"] {
+  border-radius: 50% !important;
+}
+
+/* 陪睡的月亮图标那种圆底装饰保留（在 companion-mode-card 里被硬撑成方的了，这里恢复）*/
+.companion-mode-card i {
+  border-radius: 0 !important;
+}
+
+/* ── 8. 额外：陪伴页 & 数据管理按钮风格统一 ─────────── */
+.companion-page .companion-ctrl-btn,
+.companion-page .companion-noise-corner,
+.companion-page .companion-history-corner,
+.companion-page .companion-keyboard-corner {
+  border-radius: 0 !important;
+}
+
+/* 数据管理里"危险操作"卡片的圆形图标也变方 */
+.dm-danger-card-icon,
+.dm-tile-icon {
+  border-radius: 0 !important;
+}
