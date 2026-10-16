@@ -1,40 +1,46 @@
-/* ════════════════════════════════════════════════════
-   qq2008-skin.css — 传讯 UI 换肤为 QQ2008 蓝白风
+/* ══════════════════════════════════════════════════════════════
+   qq2008-skin.css — 传讯 UI 换肤为 QQ2008 蓝白复古风
    放在所有其他 css 之后引入，靠层叠顺序覆盖
-   ════════════════════════════════════════════════════ */
 
-/* ── 1. 全局变量：换配色 + 字体 + 直角 ──────────────── */
+   包含：
+   ① 全局变量（配色/字体/直角）
+   ② 主 header QQ 蓝渐变
+   ③ 消息气泡直角 + 蓝白
+   ④ 输入框下凹 98 样式
+   ⑤ 按钮立体凸起 98 样式
+   ⑥ 弹窗立体边框 + 蓝标题栏
+   ⑦ 各模块强制直角（陪伴 / 播放器 / 每日状态 / 数据管理 / 相册 / 农场 / 一起听等）
+   ⑧ 头像 → 方框
+   ⑨ 保留圆形元素（开关/唱片/玻璃球/日历格等）
+   ══════════════════════════════════════════════════════════════ */
+
+/* ── 1. 全局变量：换配色 + 字体 + 直角 ─────────────────── */
 :root {
-  --font-family: "SimSun", "宋体", "Songti SC", serif;
+  --font-family: "SimSun",──── "宋体", "Songti SC", serif;
   --radius: 0;
   --radius-sm: 0;
   --radius-xs: 0;
 
-  /* 配色：蓝白 QQ2008 */
   --primary-bg: #ECE9D8;
   --secondary-bg: #FFFFFF;
   --text-primary: #000000;
   --text-secondary: #666666;
   --border-color: #ACA899;
 
-  /* 主题色改为 QQ 蓝 */
   --accent-color: #2E75B6;
   --accent-color-dark: #1F5C96;
   --accent-color-rgb: 46, 117, 182;
 
-  /* 背景辅助变量 */
   --primary-bg-rgb: 236, 233, 216;
   --secondary-bg-rgb: 255, 255, 255;
   --header-bg-rgb: 46, 117, 182;
 
-  /* 消息气泡 */
   --message-sent-bg: #2E75B6;
   --message-sent-text: #FFFFFF;
   --message-received-bg: #FFFFFF;
   --message-received-text: #000000;
 }
 
-/* 暗色模式也强制走蓝白（QQ2008 没有暗色） */
 html[data-theme="dark"] {
   --primary-bg: #ECE9D8;
   --secondary-bg: #FFFFFF;
@@ -46,7 +52,7 @@ html[data-theme="dark"] {
   --header-bg-rgb: 46, 117, 182;
 }
 
-/* 各主题色的覆盖：全部统一成蓝，避免原来的紫/粉/金 */
+/* 所有主题色统一为 QQ 蓝 */
 :root[data-color-theme="gold"],
 :root[data-color-theme="blue"],
 :root[data-color-theme="purple"],
@@ -61,7 +67,6 @@ html[data-theme="dark"] {
   --accent-color-dark: #1F5C96;
   --accent-color-rgb: 46, 117, 182;
 }
-
 html[data-theme="dark"][data-color-theme="black-white"] {
   --accent-color: #2E75B6;
   --accent-color-dark: #1F5C96;
@@ -69,70 +74,12 @@ html[data-theme="dark"][data-color-theme="black-white"] {
   --message-sent-text: #FFFFFF;
 }
 
-/* ── 2. 全局强制直角 ────────────────────────────────── */
-.message-input,
-.message,
-.modal-content,
-.modal-input,
-.modal-textarea,
-.settings-card,
-.settings-item,
-.setting-pill-row,
-.setting-pill-switch,
-.setting-pill-knob,
-.action-btn,
-.input-btn,
-.sticker-picker-popover,
-.combo-tabs-header,
-.combo-tab-btn,
-.combo-content-area,
-.sticker-grid-item,
-.avatar,
-.message-avatar,
-.avatar-container,
-.cs-card,
-.cs-pill,
-.cs-pills,
-.cs-compose-row,
-.cs-post,
-.cs-sheet,
-.cs-comment-input,
-.cs-cmt-input-inline,
-.companion-modal-content,
-.companion-setup-content,
-.companion-time-content,
-.companion-mode-card,
-.companion-time-btn,
-.companion-upload-zone,
-.companion-ctrl-btn,
-.companion-timer-glass,
-.news-logo,
-.news-item,
-.news-item-tag,
-.news-refresh button,
-.farm-window,
-.seed,
-.plot,
-.qq-panel,
-.qq-window {
+/* ── 2. 暴力去圆角（默认全方） ─────────────────────────── */
+*:not(.avatar):not(.message-avatar):not(.typing-indicator-avatar):not(.gmb-avatar):not(.companion-timer-glass):not(.companion-ctrl-btn):not(.avatar-container) {
   border-radius: 0 !important;
 }
 
-/* 圆形头像/按钮保留圆形（这些在 QQ2008 里也是圆的） */
-.avatar,
-.message-avatar,
-.avatar-container,
-.typing-indicator-avatar,
-.companion-timer-glass,
-.companion-ctrl-btn,
-.companion-noise-corner,
-.companion-history-corner,
-.companion-keyboard-corner,
-.gmb-avatar {
-  border-radius: 50% !important;
-}
-
-/* ── 3. 主 header：改成 QQ 蓝渐变 ──────────────────── */
+/* ── 3. 主 header：QQ 蓝渐变 ───────────────────────────── */
 .header {
   background: linear-gradient(180deg, #5B9BD5 0%, #2E75B6 55%, #1F5C96 100%) !important;
   border-bottom: 1px solid #0A246A !important;
@@ -141,68 +88,58 @@ html[data-theme="dark"][data-color-theme="black-white"] {
   backdrop-filter: none !important;
   -webkit-backdrop-filter: none !important;
 }
-
 .header .username,
 .header .status {
   color: #FFFFFF !important;
   text-shadow: 0 1px 0 rgba(0,0,0,0.3);
 }
-
-.header .action-btn {
-  color: #FFFFFF !important;
-}
-
+.header .action-btn { color: #FFFFFF !important; }
 .header .action-btn:hover {
   background-color: rgba(255,255,255,0.18) !important;
   color: #FFFFFF !important;
 }
 
-/* ── 4. 消息气泡：QQ2008 蓝白 ───────────────────────── */
+/* ── 4. 消息气泡 ───────────────────────────────────────── */
 .message {
   border: 1px solid !important;
   box-shadow: none !important;
+  border-radius: 0 !important;
 }
-
 .message-sent {
   background: #EAF4FF !important;
   color: #12345A !important;
   border-color: #A8C8E8 !important;
 }
-
 .message-received {
   background: #FFFFFF !important;
   color: #12345A !important;
   border-color: #A8C8E8 !important;
 }
 
-/* ── 5. 输入框：下凹 98 样式 ────────────────────────── */
-.message-input {
-  border: 2px solid !important;
-  border-color: #808080 #FFFFFF #FFFFFF #808080 !important;
-  background: #FFFFFF !important;
-  box-shadow: none !important;
-}
-
+/* ── 5. 输入框：下凹 98 样式 ───────────────────────────── */
+.message-input,
 .modal-input,
 .modal-textarea {
   border: 2px solid !important;
   border-color: #808080 #FFFFFF #FFFFFF #808080 !important;
   background: #FFFFFF !important;
+  box-shadow: none !important;
+  border-radius: 0 !important;
 }
 
-/* ── 6. 按钮：立体凸起 98 样式 ──────────────────────── */
+/* ── 6. 按钮：立体凸起 ─────────────────────────────────── */
 .input-btn,
 .action-btn,
 .modal-btn,
 .settings-item,
 .setting-pill-row {
-  border: 2px solid !important;
+  border: 2px─ solid !important;
   border-color: #FFFFFF #808080 #808080 #FFFFFF !important;
   background: #ECE9D8 !important;
   color: #000000 !important;
   box-shadow: 1px 1px 0 #6B6B6B !important;
+  border-radius: 0 !important;
 }
-
 .input-btn:active,
 .action-btn:active,
 .modal-btn:active {
@@ -210,8 +147,6 @@ html[data-theme="dark"][data-color-theme="black-white"] {
   box-shadow: none !important;
   transform: translate(1px, 1px) !important;
 }
-
-/* 主按钮（发送、生成回复等）：蓝色底 */
 .modal-btn-primary,
 .send-btn {
   background: linear-gradient(180deg, #5B9BD5, #2E75B6) !important;
@@ -219,14 +154,14 @@ html[data-theme="dark"][data-color-theme="black-white"] {
   border-color: #FFFFFF #1F5C96 #1F5C96 #FFFFFF !important;
 }
 
-/* ── 7. 弹窗：立体边框 ──────────────────────────────── */
+/* ── 7. 弹窗：立体边框 + 蓝标题栏 ──────────────────────── */
 .modal-content {
   border: 3px solid !important;
   border-color: #FFFFFF #808080 #808080 #FFFFFF !important;
   box-shadow: 0 0 0 1px #000, 4px 4px 0 rgba(0,0,0,0.3) !important;
   background: #ECE9D8 !important;
+  border-radius: 0 !important;
 }
-
 .modal-title {
   background: linear-gradient(180deg, #5B9BD5, #2E75B6) !important;
   color: #FFFFFF !important;
@@ -234,13 +169,10 @@ html[data-theme="dark"][data-color-theme="black-white"] {
   padding: 10px 16px !important;
   border-bottom: 1px solid #0A246A !important;
 }
-
 .modal-title i,
-.modal-title span {
-  color: #FFFFFF !important;
-}
+.modal-title span { color: #FFFFFF !important; }
 
-/* ── 8. 弹窗内的卡片 / 列表 ─────────────────────────── */
+/* ── 8. 弹窗内卡片 / 列表 ──────────────────────────────── */
 .settings-card,
 .settings-item,
 .cs-card {
@@ -248,918 +180,35 @@ html[data-theme="dark"][data-color-theme="black-white"] {
   border: 1px solid #ACA899 !important;
 }
 
-/* ── 9. 表情面板：白底 + 边框 ───────────────────────── */
+/* ── 9. 表情面板 ───────────────────────────────────────── */
 .sticker-picker-popover {
   background: #ECE9D8 !important;
   border: 2px solid !important;
   border-color: #FFFFFF #808080 #808080 #FFFFFF !important;
 }
-
 .combo-tabs-header {
   background: #ECE9D8 !important;
   border-bottom: 1px solid #ACA899 !important;
 }
-
 .combo-tab-btn.active {
   background: linear-gradient(180deg, #5B9BD5, #2E75B6) !important;
   color: #FFFFFF !important;
 }
 
-/* ── 10. 头像方角（QQ2008 是方的） ──────────────────── */
-.avatar img,
-.message-avatar img,
-.message-avatar i {
-  border-radius: 0 !important;
-}
-
-/* ── 11. 聊天区背景色：去掉背景图，用米白 ───────────── */
-body::before {
-  background-image: none !important;
-  background-color: #ECE9D8 !important;
-}
-
-.chat-container {
-  background-color: #FFFFFF !important;
-}
-
-/* ── 12. 输入区容器 ─────────────────────────────────── */
-.input-area-wrapper {
-  background: #ECE9D8 !important;
-  border-top: 1px solid #ACA899 !important;
-}
-
-.input-area {
-  border-top: none !important;
-  background: #ECE9D8 !important;
-}
-
-/* ── 13. 各种 tab 按钮 ──────────────────────────────── */
-.combo-tab-btn,
-.cs-tab,
-.stats-nav-btn,
-.farm-tab,
-.qz-nav-item,
-.reply-tab-btn {
-  border-radius: 0 !important;
-}
-
-.qz-titlebar,
-.farm-titlebar,
-.news-titlebar,
-.listen-titlebar {
-  background: linear-gradient(180deg, #5B9BD5 0%, #2E75B6 55%, #1F5C96 100%) !important;
-  color: #FFFFFF !important;
-  border-bottom: 1px solid #0A246A !important;
-}
-
-/* ── 14. 滚动条：98 风格 ────────────────────────────── */
-::-webkit-scrollbar-thumb {
-  background: #D4D0C8 !important;
-  border: 2px solid !important;
-  border-color: #FFFFFF #808080 #808080 #FFFFFF !important;
-}
-
-::-webkit-scrollbar {
-  width: 14px;
-  background: #ECE9D8;
-}
-/* ══════════════════════════════════════════════════════
-   补丁 v2：把遗漏的圆角全部干掉
-   ══════════════════════════════════════════════════════ */
-
-/* ── 全站暴力去圆角（除了明确保留圆的） ───────────────── */
-*:not(.avatar):not(.message-avatar):not(.typing-indicator-avatar):not(.gmb-avatar):not(.companion-timer-glass):not(.companion-ctrl-btn):not(.avatar-container) {
-  border-radius: 0 !important;
-}
-
-/* 恢复必须是圆形的元素（放在后面靠顺序覆盖） */
+/* ── 10. 头像：方框（重点修复） ────────────────────────── */
 .avatar,
-.message-avatar,
-.typing-indicator-avatar,
-.gmb-avatar,
-.avatar-container,
-.avatar-container .avatar,
-.message-avatar img,
-.message-avatar i,
-.companion-timer-glass,
-.companion-ctrl-btn,
-.companion-noise-corner,
-.companion-history-corner,
-.companion-keyboard-corner,
-.cs-big-av,
-.cs-big-av img,
-.cs-avatar,
-.cs-avatar img,
-.user-info .avatar,
-.user-info .avatar-container,
-.cs-post-av,
-.cs-post-av img,
-.sri-avatar,
-.sri-me,
-.sri-partner,
-.fav-avatar,
-.qz-banner-ava,
-.qz-banner-ava img,
-.qz-banner-ava::before,
-.pd-partner-av,
-.pd-partner-av img,
-.gmb-avatar img,
-.companion-bubble-avatar,
-.companion-bubble-avatar img,
-.companion-typing-avatar,
-.companion-typing-avatar img,
-.companion-transition-avatar,
-.companion-transition-avatar img,
-.companion-showtime-avatar,
-.companion-showtime-avatar img {
-  border-radius: 50% !important;
-}
-
-/* 头像本身可能带 border 或背景，方形头像角落也要跟着圆（如果用户选了方形头像） */
-.avatar-shape-square,
-.avatar-shape-square img,
-.avatar-shape-square i {
-  border-radius: 0 !important;
-}
-.avatar-shape-circle,
-.avatar-shape-circle img,
-.avatar-shape-circle i {
-  border-radius: 50% !important;
-}
-
-/* ── 弹窗内所有卡片/区块：直角 + 边框 ───────────────── */
-.modal-content *,
-.modal-content *::before,
-.modal-content *::after {
-  border-radius: 0 !important;
-}
-
-/* 弹窗里圆形的东西单独保留 */
-.modal-content .avatar,
-.modal-content .avatar-container,
-.modal-content .pd-partner-av,
-.modal-content .pd-partner-av img,
-.modal-content .cd-ring-front,
-.modal-content .cd-ring-back,
-.modal-content .pd-cal-cell,
-.modal-content .pd-flow-dot,
-.modural-content .notif-toggle-slider,
-.modveyal-content .notif-toggle-slider::before,
-.modal-content input[type="checkbox"] + .notif-toggle-slider,
-.modal-content input[type="checkbox"] + .notif-toggle-slider::before,
-.modal-content .setting-pill-switch,
-.modal-content .setting-pill-knob,
-.modal-content .dm-toggle-slider,
-.modal-content .dm-toggle-slider::after,
-.modal-content .dm-toggle-pill input:checked + .dm-toggle-slider::after,
-.modal-content .cs-toggle-label input + .notif-toggle-slider {
-  border-radius: 50% !important;
-}
-
-/* ── 按钮：全部直角 + 立体边框 ──────────────────────── */
-.modal-btn,
-.modal-btn-primary,
-.modal-btn-secondary,
-.cs-submit-btn,
-.cs-name-btn,
-.s-icon-btn,
-.cs-icon-btn,
-.companion-ctrl-btn,
-.daily-greeting-close-btn,
-.env-write-btn,
-.env-close-btn,
-.al-upload-btn,
-.al-back-btn,
-.al-sel-btn,
-.al-sel-all,
-.al-sel-del,
-.al-del-btn,
-.reply-tool-btn,
-.reply-action-mini,
-.qz-poke-btn,
-.seed,
-.farm-tab,
-.farm-tab-btn,
-.combo-tab-btn,
-.cs-tab,
-.cs-pill,
-.stats-nav-btn,
-.stats-toggle-btn,
-.survey-type-btn,
-.survey-add-option-btn,
-.survey-q-del-btn,
-.survey-q-kind-btn,
-.survey-option-del-btn,
-.survey-trash-btn-mini,
-.survey-bank-icon-btn,
-.survey-bank-group-edit-btn,
-.survey-fav-btn,
-.sticker-grid-add,
-.cs-cmt-send,
-.cs-cmt-tool-btn,
-.cs-cmt-input-inline,
-.al-photo-cell,
-.al-strip-thumb,
-.al-trash-actions button,
-.al-album-more,
-.al-action-item,
-.al-action-cancel,
-.dm-nav-btn,
-.dm-tile,
-.dm-row-item,
-.dm-danger-btn,
-.dm-drawer-action-btn,
-.dm-drawer-cancel,
-.music-local-upload-btn,
-.music-local-clear-btn,
-.voice-clone-start-btn,
-.companion-mode-card,
-.companion-time-btn,
-.companion-upload-zone,
-.companion-voice-item,
-.companion-noise-option,
-.companion-noise-list-item,
-.companion-noise-mode-btn,
-.companion-noise-card-close,
-.companion-bg-card,
-.companion-voice-card,
-.companion-mgr-iconbtn,
-.companion-mgr-add,
-.wc-view-btn,
-.wc-regen-btn,
-.wc-rank-bar,
-.rank-progress-bg,
-.rank-count,
-.fortune-card,
-.tarot-container-3d,
-.tarot-face,
-.tarot-icon-vector,
-.coin-btn-action,
-.coin-face,
-.picker-card,
-.picker-add-btn,
-.lenormand-num-btn,
-.tarot-spread-btn,
-.leno-draw-btn,
-.leno-question-input,
-.survey-answer-input,
-.cs-ann-cover-add-btn,
-.cs-ann-cover-thumb,
-.cs-ann-cover-remove-btn,
-.cs-ann-tb-btn,
-.cs-ann-remark-editor,
-.cs-ann-delete-btn,
-.cs-ann-sheet-body,
-.ff-ava,
-.ff-item,
-.ff-plot,
-.seed.selected,
-.plot,
-.shop-list .seed,
-.inv-cell,
-.prop-card,
-.prop-card button {
-  border-radius: 0 !important;
-}
-
-/* 圆形按钮单独保留（除非明确不要） */
-.modal-content .pd-cal-nav,
-.modal-content .cs-icon-btn:not(.cinema-archive-back-btn),
-.modal-content .cf-close,
-.avatar-frame,
-.companion-bg-card-check,
-.ti-settings-close,
-.al-action-mask,
-.cs-pill:not(.cs-pill-on) {
-  /* 这些保留原样，不处理 */
-}
-
-/* ── Tab / 胶囊 / 分段控件：直角 ──────────────────── */
-.cs-tabs,
-.farm-tabs,
-.qz-nav,
-.reply-tabs,
-.al-subtabs,
-.fl-tab-bar,
-.stats-tab-bar,
-.cs-pills {
-  border-radius: 0 !important;
-}
-
-/* ── 消息气泡：直角 ────────────────────────────────── */
-.message,
-.message-sent,
-.message-received,
-.reply-preview,
-.reply-indicator,
-.message-note,
-.batch-preview,
-.batch-preview-item,
-.voice-transcript,
-.voice-fake-text,
-.cinema-msg-bubble,
-.companion-bubble-content,
-.companion-history-item .companion-bubble-content,
-.cs-cmt-content,
-.cs-post,
-.cs-post-imgs img,
-.cs-cmt-preview,
-.cs-likes-row,
-.cs-cmt-section,
-.cs-reply-ctx,
-.cs-prev-thumb,
-.cs-video-thumb,
-.env-letter-item,
-.env-letter-header,
-.env-letter-body,
-.env-compose-paper,
-.env-letter-paper,
-.pd-letter-card,
-.pd-letter-line {
-  border-radius: 0 !important;
-}
-
-/* ── 输入框：直角 ──────────────────────────────────── */
-.message-input,
-.modal-input,
-.modal-textarea,
-.reply-search,
-.ti-text-input,
-.cs-comment-input,
-.cs-cmt-input-inline,
-.survey-q-text-input,
-.survey-option-text-input,
-.survey-bank-search,
-.survey-answer-input,
-.cs-ann-remark-editor,
-.al-album-name,
-.lenormand-question,
-.leno-question-input,
-#envelope-input,
-.companion-input-field,
-.companion-voice-card-name,
-.companion-voice-name-input,
-.companion-noise-list-item-name-input,
-.tts-lang-btn,
-.tts-gender-btn,
-.tts-style-preset {
-  border-radius: 0 !important;
-}
-
-/* ── 电影院黑框：直角 ──────────────────────────────── */
-.cinema-screen-wrap,
-.cinema-player-wrap,
-.cinema-appt-card,
-.cinema-chat-area,
-.cinema-sticker-popover,
-.cinema-sticker-item,
-.cinema-loading-full,
-.cinema-msg-img,
-.cinema-msg-bubble,
-.cinema-invite-card,
-.cinema-invite-card-btn,
-.cinema-invite-card-status,
-.cinema-invite-response-card,
-.cinema-invite-resp-btn,
-.cinema-confirm-card,
-.cinema-confirm-cancel,
-.cinema-confirm-ok,
-.cinema-archive-page,
-.cinema-wl-item,
-.cinema-hist-edit-body,
-.cinema-hist-edit-input,
-.cinema-hist-edit-textarea,
-.cinema-hist-edit-cancel,
-.cinema-hist-edit-save,
-.cinema-invite-body,
-.cinema-invite-input,
-.cinema-rating-body,
-.cinema-rating-textarea,
-.cinema-invite-cancel,
-.cinema-invite-confirm,
-.cinema-rating-skip,
-.cinema-rating-save,
-.cinema-source-choice-btn,
-.cinema-test-player-overlay,
-.cinema-test-player-close,
-.cinema-showtime-overlay,
-.cinema-showtime-avatar,
-.cinema-showtime-avatar-wrap,
-.cinema-showtime-btn-circle,
-.cinema-showtime-line {
-  border-radius: 0 !important;
-}
-
-/* ── 陪伴页：控制按钮保留圆，其他直角 ──────────────── */
-.companion-page .companion-ctrl-btn,
-.companion-page .companion-timer-glass,
-.companion-noise-mode-btn,
-.companion-bubble-avatar {
-  border-radius: 50% !important;
-}
-
-/* ── 农场：地块直角，但种子卡和道具卡也直角 ─────────── */
-.plot,
-.ff-plot,
-.farm-field,
-.seed,
-.seed.selected,
-.inv-cell,
-.prop-card,
-.prop-card button,
-.farm-tab,
-.farm-shop,
-.farm-tip,
-.farm-status,
-.market-block,
-.price-row,
-.ff-item,
-.ff-head,
-.ff-foot {
-  border-radius: 0 !important;
-}
-
-/* ── QQ空间/情侣空间：卡片直角 ────────────────────── */
-.cs-post,
-.cs-post-av,
-.cs-post-imgs img,
-.cs-compose-row,
-.cs-compose-plus,
-.cs-pill,
-.cs-pills,
-.cs-card,
-.cs-mood-card,
-.ann-item-card,
-.ann-detail-card,
-.ann-detail-remark,
-.ann-header-card,
-.ann-header-date,
-.ann-milestone-chip,
-.pd-cal-card,
-.pd-stat-card,
-.pd-status-card,
-.pd-letter-card,
-.pd-cal-cell,
-.pd-cal-cell.pd-period,
-.pd-cal-cell.pd-predict,
-.pd-flow-btn,
-.pd-symptom-chip,
-.pd-save-btn,
-.pd-toggle-track,
-.pd-toggle-thumb,
-#couple-space-page .cs-icon-btn,
-#cs-panel-ann .cs-icon-btn,
-.ann-detail-edit-btn {
-  border-radius: 0 !important;
-}
-
-/* 但日历日期格子还是保持圆形（正常日历风格） */
-.pd-cal-cell,
-.cs-mood-cal-card .calendar-day {
-  border-radius: 50% !important;
-}
-
-/* 情侣空间双头像保持圆 */
-.cs-big-av {
-  border-radius: 50% !important;
-}
-.cs-big-av img {
-  border-radius: 50% !important;
-}
-
-/* ── 相册：图片缩略图直角 ──────────────────────────── */
-.al-album-card,
-.al-cover,
-.al-cover img,
-.al-photo-cell,
-.al-photo-cell img,
-.al-strip-thumb,
-.al-strip-thumb img,
-.al-detail-img,
-.al-detail-video-thumb,
-.al-trash-cell img,
-.al-new-card,
-.al-no-oss-path,
-.al-no-oss-btn,
-.al-action-body,
-.al-action-item,
-.al-action-cancel {
-  border-radius: 0 !important;
-}
-
-/* ── 一起听：直角 ──────────────────────────────────── */
-.listen-window,
-.listen-now,
-.listen-disc,
-.listen-progress input[type="range"],
-.listen-controls,
-.lc-btn,
-.listen-comments,
-.lc-text,
-.listen-list,
-.listen-item,
-.listen-mini-btn,
-.listen-titlebar,
-.listen-progress,
-.listen-now-info {
-  border-radius: 0 !important;
-}
-/* 唱片还是圆的 */
-.listen-disc,
-.listen-disc::before,
-.listen-disc::after {
-  border-radius: 50% !important;
-}
-/* 音量滑块圆头保留 */
-.lc-vol input[type="range"]::-webkit-slider-thumb,
-.listen-progress input[type="range"]::-webkit-slider-thumb {
-  border-radius: 50% !important;
-}
-
-/* ── 悬浮音乐播放器：直角 ──────────────────────────── */
-.player-container,
-.full-view,
-.mini-view,
-.vinyl-record,
-.progress-wrapper,
-.progress-bar,
-.btn,
-.playlist-popup,
-.playlist-search-input,
-.playlist-item,
-.btn-main {
-  border-radius: 0 !important;
-}
-/* 播放器折叠时的小**圆保留 */
-.player-container.collapsed {
-  border-radius: 截50% !important;
-}
-/* 唱片圆盘保留 */
-一张.vinyl-record {
-  border-radius: 50% !important;
-}
-/* 播放按钮保留圆（中间大按钮） */
-.btn-main {
-  border-radius: 50% !important;
-}
-
-/* ── 悬浮窗、toast、banner ────────────────────────── */
-.gmb-banner,
-.notification,
-.toast,
-.splash-card,
-.splash-btn,
-.splash-dot,
-.splash-pledge-input,
-.splash-pledge-required,
-.welcome-content-wrapper,
-.logo-circle-outer,
-.logo-circle-inner,
-.orbit-dot,
-.orbit-dot-2,
-.orbit-dot-3 {
-  border-radius: 0 !important;
-}
-/* 圆形仍保留 */
-.splash-dot,
-.splash-dot.active,
-.logo-circle-outer,
-.logo-circle-inner,
-.orbit-dot,
-.orbit-dot-2,
-.orbit-dot-3,
-.orbit-dot::after,
-.orbit-dot-2::after,
-.orbit-dot-3::after {
-  border-radius: 50% !important;
-}
-
-/* ── QQ空间顶部 banner 保持原色（不改） ───────────── */
-.qz-banner {
-  border-radius: 0 !important;
-}
-
-/* ── 农场状态栏、天气 ─────────────────────────────── */
-.farm-status,
-.farm-weather {
-  border-radius: 0 !important;
-}
-
-/* ── 聊天设置：大卡片、区块直角 ───────────────────── */
-.cs-card,
-.cs-header,
-.cs-tabs,
-.cs-panel,
-.cs-slider-row,
-.cs-name-btn,
-.cs-footer,
-.cs-time-grid,
-.cs-immersive-wrap {
-  border-radius: 0 !important;
-}
-
-/* 聊天设置里的时间戳选项卡直角 */
-.cs-time-grid .settings-item,
-.time-fmt-opt {
-  border-radius: 0 !important;
-}
-
-/* ── 通用：所有滚动条也直角 ─────────────────────────── */
-::-webkit-scrollbar-thumb {
-  border-radius: 0 !important;
-}
-
-/* ── 特殊：开关滑块、进度条 thumb 这类保留圆形 ──────── */
-input[type="range"]::-webkit-slider-thumb,
-input[type="range"]::-moz-range-thumb {
-  border-radius: 50% !important;
-}
-
-input[type="checkbox"] + .notif-toggle-slider,
-input[type="checkbox"] + .notif-toggle-slider::before {
-  border-radius: 50% !important;
-}
-
-/* ── 修正：tab 栏的按钮不再单独上边框，避免不协调 ──── */
-.cs-tab,
-.farm-tab,
-.reply-tab-btn,
-.combo-tab-btn {
-  border: none !important;
-  border-bottom: 2px solid transparent !important;
-  background: transparent !important;
-  box-shadow: none !important;
-}
-
-.cs-tab.active,
-.farm-tab.active,
-.reply-tab-btn.active,
-.combo-tab-btn.active {
-  border-bottom-color: var(--accent-color) !important;
-  background: transparent !important;
-  color: var(--accent-color) !important;
-  font-weight: 700 !important;
-}
-
-/* ── 修正：顶部 tab 项（功能/节奏/音效）保留选中底线 ── */
-.cs-tab {
-  border-bottom: 2.5px solid transparent !important;
-}
-.cs-tab.active {
-  border-bottom-color: var(--accent-color) !important;
-}
-/* ══════════════════════════════════════════════════════
-   补丁 v3：指定模块圆角 → 直角；头像 → 方框
-   ══════════════════════════════════════════════════════ */
-
-/* ── 1. 陪伴模式选择卡片 ────────────────────────────── */
-.companion-modal-content,
-.companion-setup-content,
-.companion-time-content,
-.companion-mode-card,
-.companion-grid,
-.companion-time-btn,
-.companion-upload-zone,
-.companion-voice-item,
-.companion-bg-preview,
-.companion-setup-btns .modal-btn {
-  border-radius: 0 !important;
-}
-
-/* 陪伴模式卡片里的图标圆底也干掉 */
-.companion-mode-card i {
-  border-radius: 0 !important;
-}
-
-/* ── 2. 全屏陪伴页 ──────────────────────────────────── */
-.companion-page .companion-ctrl-btn,
-.companion-page .companion-timer-glass,
-.companion-page .companion-timer-glass::before,
-.companion-page .companion-timer-glass::after,
-.companion-page .companion-bubble-avatar,
-.companion-page .companion-bubble-content,
-.companion-page .companion-typing-avatar,
-.companion-page .companion-typing-bubble,
-.companion-page .companion-input-bar,
-.companion-page .companion-input-field,
-.companion-page .companion-input-btn,
-.companion-page .companion-noise-card-inner,
-.companion-page .companion-noise-option,
-.companion-page .companion-noise-list-item,
-.companion-page .companion-noise-now-playing,
-.companion-page .companion-exit-box,
-.companion-page .companion-transition-avatar,
-.companion-page .companion-transition-bubble,
-.companion-page .companion-history-close,
-.companion-page .companion-history-item .companion-bubble-content {
-  border-radius: 0 !important;
-}
-
-/* 陪伴页计时玻璃球——保留圆形（它是装饰核心） */
-.companion-page .companion-timer-glass {
-  border-radius: 50% !important;
-}
-.companion-page .companion-timer-glass::before {
-  border-radius: 50% !important;
-}
-.companion-page .companion-timer-glass::after {
-  border-radius: 50% !important;
-}
-/* 陪伴页气泡头像保留圆形 */
-.companion-page .companion-bubble-avatar,
-.companion-page .companion-bubble-avatar img,
-.companion-page .companion-typing-avatar,
-.companion-page .companion-typing-avatar img,
-.companion-page .companion-transition-avatar,
-.companion-page .companion-transition-avatar img {
-  border-radius: 50% !important;
-}
-/* 陪伴过渡页圆环动画保留 */
-.companion-transition-avatar,
-.companion-transition-avatar img {
-  border-radius: 50% !important;
-}
-
-/* ── 3. 悬浮音乐播放器（player-container）──────────── */
-.player-container,
-.full-view,
-.mini-view,
-.progress-wrapper,
-.progress-bar,
-.playlist-popup,
-.playlist-search-input,
-.playlist-item,
-.playlist-header,
-.pl-icon-btn,
-.custom-tag,
-.song-title-row .highlight {
-  border-radius: 0 !important;
-}
-
-/* 播放器折叠状态：从圆形改成方形 */
-.player-container.collapsed {
-  border-radius: 0 !important;
-}
-
-/* 播放按钮圆 → 方形 */
-.btn-main {
-  border-radius: 0 !important;
-}
-
-/* 唱片（那个黑色大圆）→ 保留圆形（它是唱片，必须圆） */
-.vinyl-record,
-.vinyl-record::after {
-  border-radius: 50% !important;
-}
-.vinyl-record.has-cover,
-.vinyl-record.has-cover::after {
-  border-radius: 50% !important;
-}
-
-/* 进度条、进度点：直角 */
-.progress-wrapper {
-  border-radius: 0 !important;
-}
-.progress-bar {
-  border-radius: 0 !important;
-}
-.progress-bar::after {
-  border-radius: 0 !important;
-}
-
-/* 播放器里的小图标按钮：直角 */
-.btn {
-  border-radius: 0 !important;
-}
-
-/* 播放器最外层白色卡片：大圆角 → 直角 */
-.player-container {
-  border-radius: 0 !important;
-}
-
-/* 播放列表弹窗：圆角 → 直角 */
-.playlist-popup {
-  border-radius: 0 !important;
-}
-.playlist-popup .pl-icon-btn {
-  border-radius: 0 !important;
-}
-.playlist-search-input {
-  border-radius: 0 !important;
-}
-.playlist-item {
-  border-radius: 0 !important;
-}
-
-/* 播放器顶部的展开箭头按钮（那个 ⌃）*/ 
-.player-container .minimize-btn {
-  border-radius: 0 !important;
-}
-
-/* 上传封面按钮圆形 → 方形 */
-#upload-cover-btn {
-  border-radius: 0 !important;
-}
-
-/* ── 4. 每日状态弹窗（daily-greeting）──────────────── */
-#daily-greeting-modal .daily-greeting-card,
-#daily-greeting-modal .dg-header-band,
-#daily-greeting-modal .dg-header-band-bg,
-#daily-greeting-modal .dg-header-band-overlay,
-#daily-greeting-modal .dg-emoji-circle,
-#daily-greeting-modal .dg-mood-panel,
-#daily-greeting-modal .dg-info-cell,
-#daily-greeting-modal .dg-note-box,
-#daily-greeting-modal .dg-note-weather-badge,
-#daily-greeting-modal .daily-greeting-close-btn,
-#daily-greeting-modal .dg-header-band-wave,
-#daily-greeting-modal .dg-header-band-shimmer {
-  border-radius: 0 !important;
-}
-
-/* 每日状态卡片（也用于"想你"那张蓝渐变卡）*/
-.daily-greeting-card {
-  border-radius: 0 !important;
-}
-.dg-header-band {
-  border-radius: 0 !important;
-}
-.dg-emoji-circle {
-  border-radius: 0 !important;
-}
-.dg-info-cell {
-  border-radius: 0 !important;
-}
-.dg-note-box {
-  border-radius: 0 !important;
-}
-.daily-greeting-close-btn {
-  border-radius: 0 !important;
-}
-.dg-mood-panel {
-  border-radius: 0 !important;
-}
-
-/* 每日状态里的装饰圆（如果有）*/
-.dg-info-cell-icon {
-  border-radius: 0 !important;
-}
-.dg-mood-icon-big {
-  border-radius: 0 !important;
-}
-
-/* ── 5. 数据管理弹窗（#data-modal / dm-*）──────────── */
-#data-modal .modal-content,
-.dm-body,
-.dm-storage-card,
-.dm-stat-block,
-.dm-section-label,
-.dm-tile,
-.dm-tile::after,
-.dm-tile-icon,
-.dm-row-card,
-.dm-row-icon,
-.dm-row-item,
-.dm-progress-track,
-.dm-progress-fill,
-.dm-danger-btn,
-.dm-nav-btn,
-.dm-action-drawer,
-.dm-drawer-sheet,
-.dm-drawer-handle,
-.dm-drawer-title-icon,
-.dm-drawer-action-btn,
-.dm-drawer-btn-icon,
-.dm-drawer-cancel,
-.dm-danger-card,
-.dm-danger-card-icon,
-.dm-danger-cards-row,
-.dm-danger-card-half {
-  border-radius: 0 !important;
-}
-
-/* 数据管理里的开关滑块——保留圆（开关的形状就是圆的）*/
-.dm-toggle-slider,
-.dm-toggle-slider::after {
-  border-radius: 50% !important;
-}
-.dm-toggle-pill {
-  border-radius: 28px !important;
-}
-
-/* 数据管理里的图标按钮（那个圆形箭头）—— 也改方 */
-.dm-nav-btn {
-  border-radius: 0 !important;
-}
-
-/* ── 6. 头像：全部改成方框 ──────────────────────────── */
-.avatar,
-.avatar-container,
 .avatar img,
 .avatar i,
+.avatar-container,
+.avatar-container::after,
 .avatar-container .avatar,
 .user-info .avatar,
 .user-info .avatar-container,
+.user-info .avatar-container .avatar,
+.header .avatar,
+.header .avatar img,
+.header-inner .avatar-container,
+.header-inner .avatar-container .avatar,
 .message-avatar,
 .message-avatar img,
 .message-avatar i,
@@ -1194,76 +243,392 @@ input[type="checkbox"] + .notif-toggle-slider::before {
 .cs-cmt-input-av img,
 .avatar-frame,
 .album-user-avatar,
-.header .avatar,
-.header .avatar img {
-  border-radius: 0 !important;
-  overflow: hidden !important;
-}
-
-/* 头像框（外圈装饰环）也跟着方 */
-.avatar-frame {
-  border-radius: 0 !important;
-}
-
-/* 头像圆形遮罩层也撤掉 */
-.avatar-container::after {
-  border-radius: 0 !important;
-}
-
-/* 头像形状类：强制方形 */
 .avatar-shape-circle,
 .avatar-shape-circle img,
 .avatar-shape-circle i,
-.avatar-shape-circle .avatar {
-  border-radius: 0 !important;
-}
+.avatar-shape-circle .avatar,
 .avatar-shape-square,
 .avatar-shape-square img,
 .avatar-shape-square i,
 .avatar-shape-square .avatar {
   border-radius: 0 !important;
+  overflow: hidden !important;
 }
 
-/* 聊天页顶部那个"我"和"梦角"头像容器 */
-.header-inner .avatar-container,
-.header-inner .avatar-container .avatar {
+/* 头像框外圈装饰环也方 */
+.avatar-frame {
+  border-radius: 0 !important;
+}
+.avatar-container::after {
   border-radius: 0 !important;
 }
 
-/* ── 7. 兼容：某些地方不能全方（保留圆形）─────────── */
-/* 开关滑块仍保持圆（不然开关会变得很怪）*/
+/* ── 11. 聊天区背景：米黄实色，关闭背景图 ──────────────── */
+body::before {
+  background-image: none !important;
+  background-color: #ECE9D8 !important;
+}
+.chat-container {
+  background-color: #FFFFFF !important;
+}
+
+/* ── 12. 输入区容器 ────────────────────────────────────── */
+.input-area-wrapper {
+  background: #ECE9D8 !important;
+  border-top: 1px solid #ACA899 !important;
+}
+.input-area {
+  border-top: none !important;
+  background: #ECE9D8 !important;
+}
+
+/* ── 13. 各功能页标题栏：统一 QQ 蓝 ───────────────── */
+.qz-titlebar,
+.farm-titlebar,
+.news-titlebar,
+.listen-titlebar {
+  background: linear-gradient(180deg, #5B9BD5 0%, #2E75B6 55%, #1F5C96 100%) !important;
+  color: #FFFFFF !important;
+  border-bottom: 1px solid #0A246A !important;
+}
+
+/* ── 14. 滚动条 98 风格 ────────────────────────────────── */
+::-webkit-scrollbar { width: 14px; background: #ECE9D8; }
+::-webkit-scrollbar-thumb {
+  background: #D4D0C8 !important;
+  border: 2px solid !important;
+  border-color: #FFFFFF #808080 #808080 #FFFFFF !important;
+  border-radius: 0 !important;
+}
+
+/* ══════════════════════════════════════════════════════════
+   模块：陪伴 / 播放器 / 每日状态 / 数据管理 / 相册 / 农场等
+   ══════════════════════════════════════════════════════════ */
+
+/* ── 陪伴模式选择卡片 ──────────────────────────────────── */
+.companion-modal-content,
+.companion-setup-content,
+.companion-time-content,
+.companion-mode-card,
+.companion-grid,
+.companion-time-btn,
+.companion-upload-zone,
+.companion-voice-item,
+.companion-bg-preview,
+.companion-setup-btns .modal-btn,
+.companion-mode-card i {
+  border-radius: 0 !important;
+}
+
+/* ── 全屏陪伴页 ────────────────────────────────────────── */
+.companion-page .companion-ctrl-btn,
+.companion-page .companion-timer-glass,
+.companion-page .companion-timer-glass::before,
+.companion-page .companion-timer-glass::after,
+.companion-page .companion-bubble-content,
+.companion-page .companion-typing-bubble,
+.companion-page .companion-input-bar,
+.companion-page .companion-input-field,
+.companion-page .companion-input-btn,
+.companion-page .companion-noise-card-inner,
+.companion-page .companion-noise-option,
+.companion-page .companion-noise-list-item,
+.companion-page .companion-noise-now-playing,
+.companion-page .companion-exit-box,
+.companion-page .companion-transition-bubble,
+.companion-page .companion-history-close,
+.companion-page .companion-history-item .companion-bubble-content {
+  border-radius: 0 !important;
+}
+/* 玻璃球计时器保留圆形 */
+.companion-page .companion-timer-glass,
+.companion-page .companion-timer-glass::before,
+.companion-page .companion-timer-glass::after {
+  border-radius: 50% !important;
+}
+/* 陪伴页头像保留圆（视觉必需，强行方会很难看） */
+.companion-page .companion-bubble-avatar,
+.companion-page .companion-bubble-avatar img,
+.companion-page .companion-typing-avatar,
+.companion-page .companion-typing-avatar img,
+.companion-page .companion-transition-avatar,
+.companion-page .companion-transition-avatar img {
+  border-radius: 50% !important;
+}
+
+/* ── 悬浮音乐播放器 ────────────────────────────────────── */
+.player-container,
+.full-view,
+.mini-view,
+.progress-wrapper,
+.progress-bar,
+.playlist-popup,
+.playlist-search-input,
+.playlist-item,
+.playlist-header,
+.pl-icon-btn,
+.custom-tag,
+.btn,
+#upload-cover-btn,
+.minimize-btn {
+  border-radius: 0 !important;
+}
+.player-container.collapsed { border-radius: 0 !important; }
+.btn-main { border-radius: 0 !important; }
+.progress-bar { border-radius: 0 !important; }
+.progress-bar::after { border-radius: 0 !important; }
+/* 唱片保留圆形 */
+.vinyl-record,
+.vinyl-record::after,
+.vinyl-record.has-cover,
+.vinyl-record.has-cover::after {
+  border-radius: 50% !important;
+}
+
+/* ── 每日状态弹窗 ──────────────────────────────────────── */
+#daily-greeting-modal .daily-greeting-card,
+#daily-greeting-modal .dg-header-band,
+#daily-greeting-modal .dg-header-band-bg,
+#daily-greeting-modal .dg-header-band-overlay,
+#daily-greeting-modal .dg-header-band-wave,
+#daily-greeting-modal .dg-header-band-shimmer,
+#daily-greeting-modal .dg-emoji-circle,
+#daily-greeting-modal .dg-mood-panel,
+#daily-greeting-modal .dg-info-cell,
+#daily-greeting-modal .dg-note-box,
+#daily-greeting-modal .dg-note-weather-badge,
+#daily-greeting-modal .daily-greeting-close-btn,
+#daily-greeting-modal .dg-mood-icon-big,
+#daily-greeting-modal .dg-info-cell-icon {
+  border-radius: 0 !important;
+}
+
+/* ── 数据管理弹窗（重点修复：加上 modal-content 本身）─── */
+#data-modal .modal-content,
+#data-modal .modal-title,
+#data-modal .dm-body,
+#data-modal .dm-storage-card,
+#data-modal .dm-storage-card::before,
+#data-modal .dm-stat-block,
+#data-modal .dm-stat-block-icon,
+#data-modal .dm-section-label,
+#data-modal .dm-tile,
+#data-modal .dm-tile::after,
+#data-modal .dm-tile-icon,
+#data-modal .dm-row-card,
+#data-modal .dm-row-icon,
+#data-modal .dm-row-item,
+#data-modal .dm-progress-track,
+#data-modal .dm-progress-fill,
+#data-modal .dm-danger-btn,
+#data-modal .dm-nav-btn,
+#data-modal .dm-action-drawer,
+#data-modal .dm-drawer-sheet,
+#data-modal .dm-drawer-handle,
+#data-modal .dm-drawer-title-icon,
+#data-modal .dm-drawer-action-btn,
+#data-modal .dm-drawer-btn-icon,
+#data-modal .dm-drawer-cancel,
+#data-modal .dm-danger-card,
+#data-modal .dm-danger-card-icon,
+#data-modal .dm-danger-cards-row,
+#data-modal .dm-danger-card-half,
+#data-modal .dm-modal-content {
+  border-radius: 0 !important;
+}
+/* 数据管理里的开关滑块保留圆 */
+#data-modal .dm-toggle-slider,
+#data-modal .dm-toggle-slider::after {
+  border-radius: 50% !important;
+}
+#data-modal .dm-toggle-pill {
+  border-radius: 28px !important;
+}
+
+/* ── 相册 / 空间 / 农场 / 一起听 / 电影院 / 纪念日等 ────── */
+.cs-post,
+.cs-post-imgs img,
+.cs-compose-row,
+.cs-compose-plus,
+.cs-pill,
+.cs-pills,
+.cs-card,
+.cs-mood-card,
+.cs-header,
+.cs-tabs,
+.cs-panel,
+.cs-slider-row,
+.cs-name-btn,
+.cs-footer,
+.cs-time-grid,
+.cs-immersive-wrap,
+.cs-time-grid .settings-item,
+.time-fmt-opt,
+.ann-item-card,
+.ann-detail-card,
+.ann-detail-remark,
+.ann-header-card,
+.ann-header-date,
+.ann-milestone-chip,
+.pd-cal-card,
+.pd-stat-card,
+.pd-status-card,
+.pd-letter-card,
+.pd-flow-btn,
+.pd-symptom-chip,
+.pd-save-btn,
+.al-album-card,
+.al-cover,
+.al-cover img,
+.al-photo-cell,
+.al-photo-cell img,
+.al-strip-thumb,
+.al-strip-thumb img,
+.al-detail-img,
+.al-detail-video-thumb,
+.al-trash-cell img,
+.al-new-card,
+.al-no-oss-path,
+.al-no-oss-btn,
+.al-action-body,
+.al-action-item,
+.al-action-cancel,
+.plot,
+.ff-plot,
+.farm-field,
+.seed,
+.seed.selected,
+.inv-cell,
+.prop-card,
+.prop-card button,
+.farm-tab,
+.farm-shop,
+.farm-tip,
+.farm-status,
+.market-block,
+.price-row,
+.ff-item,
+.ff-head,
+.ff-foot,
+.listen-window,
+.listen-now,
+.listen-progress,
+.listen-progress input[type="range"],
+.listen-controls,
+.lc-btn,
+.listen-comments,
+.lc-text,
+.listen-list,
+.listen-item,
+.listen-mini-btn,
+.listen-now-info,
+.cinema-screen-wrap,
+.cinema-player-wrap,
+.cinema-appt-card,
+.cinema-chat-area,
+.cinema-sticker-popover,
+.cinema-sticker-item,
+.cinema-loading-full,
+.cinema-msg-img,
+.cinema-msg-bubble,
+.cinema-invite-card,
+.cinema-invite-card-btn,
+.cinema-invite-card-status,
+.cinema-invite-response-card,
+.cinema-invite-resp-btn,
+.cinema-confirm-card,
+.cinema-confirm-cancel,
+.cinema-confirm-ok,
+.cinema-wl-item,
+.cinema-hist-edit-body,
+.cinema-hist-edit-input,
+.cinema-hist-edit-textarea,
+.cinema-hist-edit-cancel,
+.cinema-hist-edit-save,
+.cinema-invite-body,
+.cinema-invite-input,
+.cinema-rating-body,
+.cinema-rating-textarea,
+.cinema-invite-cancel,
+.cinema-invite-confirm,
+.cinema-rating-skip,
+.cinema-rating-save,
+.cinema-source-choice-btn,
+.cinema-test-player-overlay,
+.cinema-test-player-close,
+.cinema-showtime-overlay,
+.cinema-showtime-avatar-wrap,
+.cinema-showtime-btn-circle,
+.cinema-showtime-line {
+  border-radius: 0 !important;
+}
+/* 一起听唱片保留圆 */
+.listen-disc,
+.listen-disc::before,
+.listen-disc::after {
+  border-radius: 50% !important;
+}
+/* 日历格子保留圆 */
+.pd-cal-cell,
+.cs-mood-cal-card .calendar-day {
+  border-radius: 50% !important;
+}
+/* 情侣空间双头像保留圆 */
+.cs-big-av,
+.cs-big-av img {
+  border-radius: 50% !important;
+}
+
+/* ── 悬浮窗 / toast / banner ───────────────────────────── */
+.gmb-banner,
+.notification,
+.toast,
+.splash-card,
+.splash-btn,
+.splash-pledge-input,
+.splash-pledge-required,
+.welcome-content-wrapper {
+  border-radius: 0 !important;
+}
+
+/* ── 保留圆形元素（开关 / 滑块 / 头像点等）─────────────── */
 input[type="checkbox"] + .notif-toggle-slider,
 input[type="checkbox"] + .notif-toggle-slider::before,
 .setting-pill-switch,
 .setting-pill-knob,
 .fb-toggle,
-.fb-toggle::after {
+.fb-toggle::after,
+.pd-toggle-track,
+.pd-toggle-thumb,
+.dm-toggle-slider,
+.dm-toggle-slider::after {
   border-radius: 50% !important;
 }
-.setting-pill-switch {
-  border-radius: 23px !important;
-}
-
-/* 单选按钮点（如果有）*/
-input[type="radio"] {
+.setting-pill-switch { border-radius: 23px !important; }
+input[type="radio"] { border-radius: 50% !important; }
+input[type="range"]::-webkit-slider-thumb,
+input[type="range"]::-moz-range-thumb {
   border-radius: 50% !important;
 }
 
-/* 陪睡的月亮图标那种圆底装饰保留（在 companion-mode-card 里被硬撑成方的了，这里恢复）*/
-.companion-mode-card i {
-  border-radius: 0 !important;
+/* ── Tab 按钮：去掉立体边框，只保留底部选中线 ──────────── */
+.cs-tab,
+.farm-tab,
+.reply-tab-btn,
+.combo-tab-btn {
+  border: none !important;
+  border-bottom: 2px solid transparent !important;
+  background: transparent !important;
+  box-shadow: none !important;
 }
-
-/* ── 8. 额外：陪伴页 & 数据管理按钮风格统一 ─────────── */
-.companion-page .companion-ctrl-btn,
-.companion-page .companion-noise-corner,
-.companion-page .companion-history-corner,
-.companion-page .companion-keyboard-corner {
-  border-radius: 0 !important;
+.cs-tab.active,
+.farm-tab.active,
+.reply-tab-btn.active,
+.combo-tab-btn.active {
+  border-bottom-color: var(--accent-color) !important;
+  background: transparent !important;
+  color: var(--accent-color) !important;
+  font-weight: 700 !important;
 }
-
-/* 数据管理里"危险操作"卡片的圆形图标也变方 */
-.dm-danger-card-icon,
-.dm-tile-icon {
-  border-radius: 0 !important;
-}
+.cs-tab { border-bottom: 2.5px solid transparent !important; }
+.cs-tab.active { border-bottom-color: var(--accent-color) !important; }
